@@ -12,12 +12,12 @@ import pathlib
 
 import matplotlib.pyplot as plt
 import numpy as np
-import seaborn as sns
+
 import tensorflow as tf
 
-from tensorflow.keras import layers
-from tensorflow.keras import models
-from IPython import display
+from keras import layers
+from keras import models
+
 
 from lib.external_resources.simple_audio_create_model import test_spectrogram_ds, train_ds
 
@@ -28,13 +28,13 @@ y_pred = tf.argmax(y_pred, axis=1)
 y_true = tf.concat(list(test_spectrogram_ds.map(lambda s,lab: lab)), axis=0)
 
 label_names = np.array(train_ds.class_names)
-
-confusion_mtx = tf.math.confusion_matrix(y_true, y_pred)
-plt.figure(figsize=(10, 8))
-sns.heatmap(confusion_mtx,
-            xticklabels=label_names,
-            yticklabels=label_names,
-            annot=True, fmt='g')
-plt.xlabel('Prediction')
-plt.ylabel('Label')
-plt.show()
+#
+# confusion_mtx = tf.math.confusion_matrix(y_true, y_pred)
+# plt.figure(figsize=(10, 8))
+# sns.heatmap(confusion_mtx,
+#             xticklabels=label_names,
+#             yticklabels=label_names,
+#             annot=True, fmt='g')
+# plt.xlabel('Prediction')
+# plt.ylabel('Label')
+# plt.show()
