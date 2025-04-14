@@ -53,10 +53,10 @@ def record_audio():
 
     return np.frombuffer(b''.join(frames), dtype=np.int16)
 
-def predict_mic():
+def predict_mic(ld_mod = loaded_model):
     audio = record_audio()
     spec = preprocess_audiobuffer(audio)
-    prediction = loaded_model(spec)
+    prediction = ld_mod(spec)
     label_pred = np.argmax(prediction, axis=1)
     command = stcd.vr_cmds[label_pred[0]]
     print("Predicted label:", command)
