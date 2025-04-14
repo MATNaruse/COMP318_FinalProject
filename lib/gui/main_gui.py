@@ -1,20 +1,9 @@
-import random
-
 from nicegui import ui
 
-from lib.static_data import static_data
+from lib.gui import eye_test
 
-ui.label('Hello NiceGUI!')
+# Adding the Reroll Button for testing
+debug_btn = eye_test.debug_reroll_btn
 
-img = ui.image('https://picsum.photos/640/360').classes('w-64')
-
-def random_circle():
-    directions = list(static_data.options.keys())
-    chosen_direction= random.choice(directions)
-    img.source = static_data.options.get(chosen_direction)
-    img.force_reload()
-
-ui.button('New Direction', on_click=random_circle)
-
-
+# Running the UI
 ui.run()

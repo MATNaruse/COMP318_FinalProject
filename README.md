@@ -1,2 +1,2 @@
-# COMP316_FinalProject
-Group 5 - Python Voice To Do List
+# COMP318_FinalProject
+Group 5 - Python Voice Eye Test on Raspberry Pi
