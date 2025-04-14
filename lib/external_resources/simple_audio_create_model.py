@@ -4,17 +4,13 @@
     Using Specific Snippets for our use case
 """
 
-import os
 import pathlib
 
-import matplotlib.pyplot as plt
 import numpy as np
-import seaborn as sns
 import tensorflow as tf
 
-from tensorflow.keras import layers
-from tensorflow.keras import models
-from IPython import display
+from keras import layers
+from keras import models
 
 """
     1) Setting the seed value for experiment reproducibility.
@@ -134,8 +130,27 @@ model = models.Sequential([
 
 model.summary()
 
+# "Configure the Keras model with the Adam optimizer and the cross-entropy loss:"
+model.compile(
+    optimizer=tf.keras.optimizers.Adam(),
+    loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+    metrics=['accuracy'],
+)
+
+# Actually Training the Data
+# MN - I somehow missed this completely
+EPOCHS = 10
+history = model.fit(
+    train_spectrogram_ds,
+    validation_data=val_spectrogram_ds,
+    epochs=EPOCHS,
+    callbacks=tf.keras.callbacks.EarlyStopping(verbose=1, patience=2),
+)
+
+model.evaluate(test_spectrogram_ds, return_dict=True)
+
 """
-    7) Exporting/Saving Model
+    8) Exporting/Saving Model
 """
 
 # Moving away from the example/tutorial, as we just need the model in .h5 format to work with
