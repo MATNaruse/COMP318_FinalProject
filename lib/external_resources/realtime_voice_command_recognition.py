@@ -7,6 +7,9 @@
 import pyaudio
 import numpy as np
 import tensorflow as tf
+from keras import models
+
+from lib.static_data import static_data as stcd
 
 # PyAudio Variables
 FRAMES_PER_BUFFER = 3200
@@ -19,7 +22,7 @@ p = pyaudio.PyAudio()
 seed = 42
 tf.random.set_seed(seed)
 np.random.seed(seed)
-
+loaded_model = models.load_model("simple_audio.h5")
 """
     PyAudio Helper Snippets
 """
@@ -49,6 +52,15 @@ def record_audio():
     stream.close()
 
     return np.frombuffer(b''.join(frames), dtype=np.int16)
+
+def predict_mic():
+    audio = record_audio()
+    spec = preprocess_audiobuffer(audio)
+    prediction = loaded_model(spec)
+    label_pred = np.argmax(prediction, axis=1)
+    command = stcd.vr_cmds[label_pred[0]]
+    print("Predicted label:", command)
+    return command
 
 
 def terminate():

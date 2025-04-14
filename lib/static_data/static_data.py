@@ -4,3 +4,5 @@ options = {"Up":"assets/up.png",
            "Right":"assets/right.png"}
 
 vr_cmds = ['down', 'go', 'left', 'no', 'right', 'stop', 'up', 'yes']
+
+preset_test1 = ['up', 'down', 'left', 'right']

@@ -8,8 +8,7 @@ from realtime_voice_command_recognition import record_audio, terminate, preproce
 from lib.static_data import static_data
 
 # !! Modify this in the correct order
-# commands = static_data.vr_cmds
-commands = ['down', 'go', 'left', 'no', 'right', 'stop', 'up', 'yes']
+commands = static_data.vr_cmds
 
 # p = pyaudio.PyAudio()
 # info = p.get_host_api_info_by_index(0)
@@ -20,8 +19,6 @@ commands = ['down', 'go', 'left', 'no', 'right', 'stop', 'up', 'yes']
 #         print("Input Device id ", i, " - ", p.get_device_info_by_host_api_device_index(0, i).get('name'))
 
 
-
-# loaded_model = models.load_model("simple_audio.h5")
 loaded_model = models.load_model("simple_audio.h5")
 
 test_answers = ['up', 'down', 'left', 'right', 'yes', 'no']
