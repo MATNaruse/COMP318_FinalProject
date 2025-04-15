@@ -1,20 +1,25 @@
 # Handles lighting up LEDs
 from time import sleep
+from gpiozero import LED
 
-# from gpiozero import LEDBoard
+"""WILL NEED TO UPDATE THIS CODE ON RPI LOCALLY"""
 
 # Storing 'pin address index' as value to call from the LEDBoard tuple
-LEDDict = {"up": 0, "down": 1, "left": 2, "right": 3, "yes": 4, "no": 5}
-# leds = LEDBoard(1, 2, 3, 4)
+LEDDict = {"up": 9, "down": 10, "left": 11, "right": 23, "yes": 24, "no": 25}
 
 
 def blink_led(v_input):
     # Sets LED to blink based on passed 'verbal input'
     print(f"Blinking {v_input} - {LEDDict.get(v_input)}")
-    # leds.on(LEDDict.get(v_input))
-    # sleep(2)
-    # leds.off()
-    # leds.blink()
+    led = LED(LEDDict.get(v_input))
+    led.on()
+    sleep(1)
+    led.off()
 
 if __name__ == '__main__':
     blink_led("up")
+    blink_led("down")
+    blink_led("left")
+    blink_led("right")
+    blink_led("yes")
+    blink_led("no")
