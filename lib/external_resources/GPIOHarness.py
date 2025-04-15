@@ -1,4 +1,7 @@
-# Handles lighting up LEDs
+"""
+    COMP318-002 Group 5
+    Handles lighting up LEDs
+"""
 from time import sleep
 from gpiozero import LED
 
