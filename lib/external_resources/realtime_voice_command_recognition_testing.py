@@ -2,7 +2,7 @@ import numpy as np
 import importlib
 from keras import models
 
-# from lib.classes.GPIOHarness import blink_led
+from GPIOHarness import blink_led
 from realtime_voice_command_recognition import record_audio, terminate, preprocess_audiobuffer
 
 # from lib.static_data import static_data
@@ -28,13 +28,19 @@ def predict_mic():
     return command
 
 if __name__ == "__main__":
-    x = 0
-    correct = 0
-    for x in range(0, 6):
+    while True:
         command = predict_mic()
+        blink_led(command)
+        if command == "stop":
+            terminate()
+            break
+    # x = 0
+    # correct = 0
+    # for x in range(0, 6):
+        # command = predict_mic()
         # blink_led(command)
-    for result in zip(test_input, test_answers):
-        if result[0] == result[1]:
-            correct = correct + 1
-        print(f"[{'O' if result[0] == result[1] else 'X'}] {result[0]} - {result[1]}")
-    print(f"You got {correct} out of {len(test_answers)} correct!")
+    # for result in zip(test_input, test_answers):
+        # if result[0] == result[1]:
+            # correct = correct + 1
+        # print(f"[{'O' if result[0] == result[1] else 'X'}] {result[0]} - {result[1]}")
+    # print(f"You got {correct} out of {len(test_answers)} correct!")

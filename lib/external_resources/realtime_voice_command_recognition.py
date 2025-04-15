@@ -35,7 +35,6 @@ def record_audio():
         rate=RATE,
         input=True,
         frames_per_buffer=FRAMES_PER_BUFFER,
-        input_device_index=1
     )
     # MN - Change input_device_index to 0 or remove line, this is set for my mic input
 
