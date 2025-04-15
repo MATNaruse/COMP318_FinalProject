@@ -1,15 +1,15 @@
 import numpy as np
-
+import importlib
 from keras import models
 
-from lib.classes.GPIOHarness import blink_led
+# from lib.classes.GPIOHarness import blink_led
 from realtime_voice_command_recognition import record_audio, terminate, preprocess_audiobuffer
 
-from lib.static_data import static_data
+# from lib.static_data import static_data
 
 # !! Modify this in the correct order
-commands = static_data.vr_cmds
-
+# commands = static_data.vr_cmds
+commands = ['down', 'go', 'left', 'no', 'right', 'stop', 'up', 'yes']
 
 loaded_model = models.load_model("simple_audio.h5")
 
@@ -32,7 +32,7 @@ if __name__ == "__main__":
     correct = 0
     for x in range(0, 6):
         command = predict_mic()
-        blink_led(command)
+        # blink_led(command)
     for result in zip(test_input, test_answers):
         if result[0] == result[1]:
             correct = correct + 1

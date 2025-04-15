@@ -4,12 +4,11 @@
         https://github.com/AssemblyAI-Community/realtime-voice-command-recognition
     Using Specific Snippets for our Use Case
 """
-import pyaudio
+import pyaudio, importlib
 import numpy as np
 import tensorflow as tf
 from keras import models
 
-from lib.static_data import static_data as stcd
 
 # PyAudio Variables
 FRAMES_PER_BUFFER = 3200
@@ -23,6 +22,8 @@ seed = 42
 tf.random.set_seed(seed)
 np.random.seed(seed)
 loaded_model = models.load_model("simple_audio.h5")
+
+vr_cmds = ['down', 'go', 'left', 'no', 'right', 'stop', 'up', 'yes']
 """
     PyAudio Helper Snippets
 """
@@ -58,7 +59,7 @@ def predict_mic(ld_mod = loaded_model):
     spec = preprocess_audiobuffer(audio)
     prediction = ld_mod(spec)
     label_pred = np.argmax(prediction, axis=1)
-    command = stcd.vr_cmds[label_pred[0]]
+    command = vr_cmds[label_pred[0]]
     print("Predicted label:", command)
     return command
 
